@@ -19,11 +19,11 @@ public class Anime {
         this.tag = tag;
     }
 
-    public int compareToRating(final Anime animeToCompareByRating) {
-        return (int) (statistics.getRating() - animeToCompareByRating.statistics.getRating());
+    public int compareToRating(final Anime animeToCompare) {
+        return (int) (statistics.getRating() - animeToCompare.statistics.getRating());
     }
 
-    public int compareToViews(final Anime animeToCompareByViews) {
-        return (int) (statistics.getViews() - animeToCompareByViews.statistics.getViews());
+    public int compareToViews(final Anime animeToCompare) {
+        return (int) (statistics.getViews() - animeToCompare.statistics.getViews());
     }
 }
