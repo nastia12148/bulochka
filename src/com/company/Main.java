@@ -33,33 +33,33 @@ public class Main {
     }
 
     public static void readFromConsole(final List<Anime> animeList) throws Exception {
-        Scanner animeScanner = new Scanner(System.in);
+        final Scanner animeScanner = new Scanner(System.in);
 
         System.out.println("Enter the amount of anime");
-        int amountOfAnime = animeScanner.nextInt();
+        final int amountOfAnime = animeScanner.nextInt();
 
-        String name,description;
-        Statistics statistics = new Statistics();
-        AgeLimits limit = AgeLimits.CODOMO;
-        Tag tag;
+        for (int i = 0; i < amountOfAnime; ++i) {
 
-        for (int i = 0; i < amountOfAnime; i++) {
-
+            final String name;
             System.out.println("Enter the name of anime");
             name = animeScanner.next();
 
+            final Statistics statistics = new Statistics();
             System.out.println("Enter the rating of anime");
             statistics.setRating(Double.parseDouble(animeScanner.next()));
 
             System.out.println("Enter the views of anime");
             statistics.setViews(Integer.parseInt(animeScanner.next()));
 
+            final AgeLimits limit;
             System.out.println("Enter the age limit of anime (CODOMO, SUNEEN, SHOZE, SEINEN, JOSAI)");
             limit = AgeLimits.valueOf(animeScanner.next());
 
+            final String description;
             System.out.println("Enter the description of anime");
             description = animeScanner.next();
 
+            final Tag tag;
             System.out.println("Enter the tag of anime (FANTASY, GAME, HISTORY, HETERO, YAOI, YURI)");
             tag = Tag.valueOf(animeScanner.next());
 
