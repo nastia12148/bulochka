@@ -1,23 +1,23 @@
 package com.company;
 
-import java.util.Objects;
+import com.company.model.Anime;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Statistics {
 
-    int views;
-    double rating;
+    private int views;
+    private double rating;
 
-    @Override
-    public boolean equals (Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Statistics)) return false;
-        Statistics that = (Statistics) o;
-        return views == that.views && Double.compare(that.rating, rating) == 0;
-    }
+    public ArrayList<Anime> sort (ArrayList<Anime> list, boolean ratingOrViews) {
+        final Comparator<Anime> comparator = ratingOrViews
+                ? Anime::compareToRating
+                : Anime::compareToViews;
 
-    @Override
-    public int hashCode () {
-        return Objects.hash(views, rating);
+        list.sort(comparator);
+
+        return list;
     }
 
     public int getViews () { return views; }

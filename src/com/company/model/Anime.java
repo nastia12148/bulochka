@@ -10,7 +10,8 @@ public class Anime {
     private String description;
     private Tag tag;
 
-    public Anime(String name, Statistics statistics, AgeLimits limit, String description, Tag tag) {
+    public Anime (final String name, final Statistics statistics, final AgeLimits limit,
+                 final String description, final Tag tag) {
         this.name = name;
         this.statistics = statistics;
         this.limit = limit;
