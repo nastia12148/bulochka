@@ -3,15 +3,17 @@ package com.company;
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
 import com.company.model.*;
+import com.company.util.WorkWithXML;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        final List<Anime> animeList = new ArrayList<>();
+        WorkWithXML xml = new WorkWithXML();
+        xml.read("resourses/Anime.xml");
+        /*final List<Anime> animeList = new ArrayList<>();
         readFromConsole(animeList);
 
         animeList.stream()
@@ -28,7 +30,7 @@ public class Main {
         animeList.stream()
                 .sorted(Anime::compareToViews)
                 .map(Anime::toString)
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
     }
 
     public static void readFromConsole(final List<Anime> animeList) {
@@ -66,13 +68,25 @@ public class Main {
             System.out.println("Enter the tag of anime (FANTASY, GAME, HISTORY, HETERO, YAOI, YURI)");
             tag = Tag.valueOf(animeScanner.next());
 
-            if(animeType.equals("R")) {
-                animeList.add(new RomanticAnime(name, statistics, limit, description, tag));
-            } else if(animeType.equals("C")) {
-                animeList.add(new ComedyAnime(name, statistics, limit, description, tag));
-            }else if(animeType.equals("A")) {
-                animeList.add(new AdventureAnime(name, statistics, limit, description, tag));
-            }else {
+            if (animeType.equals("R")) {
+                final int amountOfGirlfriends;
+                System.out.println("Enter the amount of girlfriends in anime");
+                amountOfGirlfriends = Integer.parseInt(animeScanner.next());
+
+                animeList.add(new RomanticAnime(name, statistics, limit, description, tag, amountOfGirlfriends));
+            } else if (animeType.equals("C")) {
+                final int amountOfJokes;
+                System.out.println("Enter the amount of jokes in anime");
+                amountOfJokes = Integer.parseInt(animeScanner.next());
+
+                animeList.add(new ComedyAnime(name, statistics, limit, description, tag, amountOfJokes));
+            } else if (animeType.equals("A")) {
+                final int amountOfLocations;
+                System.out.println("Enter the amount of locations in anime");
+                amountOfLocations = Integer.parseInt(animeScanner.next());
+
+                animeList.add(new AdventureAnime(name, statistics, limit, description, tag, amountOfLocations));
+            } else {
                 System.out.println("Anime type error");
             }
         }
