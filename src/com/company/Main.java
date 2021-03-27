@@ -6,29 +6,34 @@ import com.company.model.Anime;
 import com.company.model.Statistics;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        ArrayList<Anime> animeList = new ArrayList<Anime>();
-        readFromConsole(animeList);
-        for (int i = 0 ; i < animeList.size() ; i++){
-            System.out.println(animeList.get(i).toString());
-        }
-        animeList.sort(Anime::compareToRating);
-        System.out.println("Sorted by rating: \n");
-        for (int i = 0 ; i < animeList.size() ; i++){
-            System.out.println(animeList.get(i).toString());
-        }
-        animeList.sort(Anime::compareToViews);
-        for (int i = 0 ; i < animeList.size() ; i++){
-            System.out.println(animeList.get(i).toString());
-        }
+        final List<Anime> animeList = new ArrayList<>();
 
+        readFromConsole(animeList);
+
+        animeList.stream()
+                .map(Anime::toString)
+                .forEach(System.out::println);
+
+        System.out.println("Sorted by rating: \n");
+        animeList.stream()
+                .sorted(Anime::compareToRating)
+                .map(Anime::toString)
+                .forEach(System.out::println);
+
+        System.out.println("Sorted by views: \n");
+        animeList.stream()
+                .sorted(Anime::compareToViews)
+                .map(Anime::toString)
+                .forEach(System.out::println);
     }
 
-    public static void readFromConsole(ArrayList<Anime> animeList) throws Exception{
+    public static void readFromConsole(List<Anime> animeList) throws Exception{
         Scanner animeScanner = new Scanner(System.in);
         System.out.println("Enter the amount of anime");
         int amountOfAnime = animeScanner.nextInt();
