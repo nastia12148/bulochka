@@ -7,28 +7,13 @@ import java.util.List;
 
 public class AnimeList<T extends Anime> extends ArrayList<T> implements List<T> {
 
-    public AnimeList<Anime> sort(AnimeList<Anime> list, boolean ratingOrViews ){
+    public AnimeList<Anime> sort(AnimeList<Anime> list, boolean ratingOrViews) {
+        final Comparator<Anime> comparator = ratingOrViews
+                ? Anime::compareToRating
+                : Anime::compareToViews;
 
-        if(ratingOrViews == true){
-        Comparator<Anime> sortByRating = new Comparator<Anime>() {
-            @Override
-            public int compare(Anime o1, Anime o2) {
-                return o1.compareToRating(o2);
+        list.sort(comparator);
 
-            }
-
-        };
-        Collections.sort(list,sortByRating);
-        }else{
-            Comparator<Anime> sortByViews = new Comparator<Anime>() {
-                @Override
-                public int compare(Anime o1, Anime o2) {
-                    return o1.compareToViews(o2);
-                }
-
-            };
-            Collections.sort(list,sortByViews);
-        }
         return list;
     }
 
