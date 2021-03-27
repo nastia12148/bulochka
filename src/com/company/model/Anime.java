@@ -19,14 +19,25 @@ public class Anime {
     }
 
 
-    public int compareTo1(Anime o1){
+    public int compareToRating(Anime o1){
         if(this.statistics.getRating()== o1.statistics.getRating()){
-
+            return  0;
         }
         else if(this.statistics.getRating() > o1.statistics.getRating()){
-
+            return 1;
         }else{
+            return  -1;
+        }
+    }
 
+    public int compareToViews(Anime o1){
+        if(this.statistics.getViews()== o1.statistics.getViews()){
+            return  0;
+        }
+        else if(this.statistics.getViews() > o1.statistics.getViews()){
+            return 1;
+        }else{
+            return  -1;
         }
     }
 }
