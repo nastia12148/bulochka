@@ -18,7 +18,6 @@ public class Anime {
         this.tag = tag;
     }
 
-
     public int compareToRating (Anime o1) {
         return (int) (statistics.getRating() - o1.statistics.getRating());
     }

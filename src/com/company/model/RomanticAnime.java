@@ -4,7 +4,8 @@ import com.company.Statistics;
 
 public class RomanticAnime extends Anime {
 
-    public RomanticAnime (String name, Statistics statistics, AgeLimits limit, String description, Tag tag) {
-        super (name, statistics, limit, description, tag);
+    public RomanticAnime (final String name, final Statistics statistics, final AgeLimits limit,
+                          final String description, final Tag tag) {
+        super(name, statistics, limit, description, tag);
     }
 }

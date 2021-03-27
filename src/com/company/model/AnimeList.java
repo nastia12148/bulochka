@@ -12,7 +12,7 @@ public class AnimeList<T extends Anime> extends ArrayList<T> implements List<T> 
                 ? Anime::compareToRating
                 : Anime::compareToViews;
 
-        list.sort (comparator);
+        list.sort(comparator);
 
         return list;
     }

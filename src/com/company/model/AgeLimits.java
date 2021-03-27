@@ -7,5 +7,4 @@ public enum AgeLimits {
     SEINEN,
     JOSAI;
 
-
 }
