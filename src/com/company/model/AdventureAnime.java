@@ -9,4 +9,9 @@ public class AdventureAnime extends Anime {
                           final String description, final Tag tag) {
         super(name, statistics, limit, description, tag);
     }
+
+    @Override
+    public String toString() {
+        return "AdventureAnime{ " + super.toString();
+    }
 }

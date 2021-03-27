@@ -2,8 +2,7 @@ package com.company;
 
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
-import com.company.model.Anime;
-import com.company.model.Statistics;
+import com.company.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         final List<Anime> animeList = new ArrayList<>();
         readFromConsole(animeList);
 
@@ -32,13 +31,17 @@ public class Main {
                 .forEach(System.out::println);
     }
 
-    public static void readFromConsole(final List<Anime> animeList) throws Exception {
+    public static void readFromConsole(final List<Anime> animeList) {
         final Scanner animeScanner = new Scanner(System.in);
 
         System.out.println("Enter the amount of anime");
         final int amountOfAnime = animeScanner.nextInt();
 
         for (int i = 0; i < amountOfAnime; ++i) {
+
+            final String animeType;
+            System.out.println("Enter the anime type (R, C, A)");
+            animeType = animeScanner.next();
 
             final String name;
             System.out.println("Enter the name of anime");
@@ -63,7 +66,15 @@ public class Main {
             System.out.println("Enter the tag of anime (FANTASY, GAME, HISTORY, HETERO, YAOI, YURI)");
             tag = Tag.valueOf(animeScanner.next());
 
-            animeList.add(new Anime(name, statistics, limit, description, tag));
+            if(animeType.equals("R")) {
+                animeList.add(new RomanticAnime(name, statistics, limit, description, tag));
+            } else if(animeType.equals("C")) {
+                animeList.add(new ComedyAnime(name, statistics, limit, description, tag));
+            }else if(animeType.equals("A")) {
+                animeList.add(new AdventureAnime(name, statistics, limit, description, tag));
+            }else {
+                System.out.println("Anime type error");
+            }
         }
     }
 }

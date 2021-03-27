@@ -9,4 +9,9 @@ public class ComedyAnime extends Anime {
                        final String description, final Tag tag) {
         super(name, statistics, limit, description, tag);
     }
+
+    @Override
+    public String toString() {
+        return "ComedyAnime{ " + super.toString();
+    }
 }

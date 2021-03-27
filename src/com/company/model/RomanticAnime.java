@@ -9,4 +9,9 @@ public class RomanticAnime extends Anime {
                          final String description, final Tag tag) {
         super(name, statistics, limit, description, tag);
     }
+
+    @Override
+    public String toString() {
+        return "RomanticAnime{ " + super.toString();
+    }
 }

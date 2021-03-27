@@ -22,8 +22,7 @@ public class Anime {
 
     @Override
     public String toString() {
-        return "Anime{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", statistics=" + statistics +
                 ", limit=" + limit +
                 ", description='" + description + '\'' +
