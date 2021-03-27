@@ -10,7 +10,7 @@ public class Anime {
     private String description;
     private Tag tag;
 
-    public Anime (final String name, final Statistics statistics, final AgeLimits limit,
+    public Anime(final String name, final Statistics statistics, final AgeLimits limit,
                  final String description, final Tag tag) {
         this.name = name;
         this.statistics = statistics;
@@ -19,11 +19,11 @@ public class Anime {
         this.tag = tag;
     }
 
-    public int compareToRating (Anime o1) {
-        return (int) (statistics.getRating() - o1.statistics.getRating());
+    public int compareToRating(final Anime animeToCompareByRating) {
+        return (int) (statistics.getRating() - animeToCompareByRating.statistics.getRating());
     }
 
-    public int compareToViews (Anime o1) {
-        return (int) (statistics.getViews() - o1.statistics.getViews());
+    public int compareToViews(final Anime animeToCompareByViews) {
+        return (int) (statistics.getViews() - animeToCompareByViews.statistics.getViews());
     }
 }

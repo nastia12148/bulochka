@@ -10,7 +10,7 @@ public class Statistics {
     private int views;
     private double rating;
 
-    public ArrayList<Anime> sort (ArrayList<Anime> list, boolean ratingOrViews) {
+    public ArrayList<Anime> sort(ArrayList<Anime> list, boolean ratingOrViews) {
         final Comparator<Anime> comparator = ratingOrViews
                 ? Anime::compareToRating
                 : Anime::compareToViews;
@@ -20,12 +20,12 @@ public class Statistics {
         return list;
     }
 
-    public int getViews () { return views; }
+    public int getViews() { return views; }
 
-    public void setViews (int views) { this.views = views; }
+    public void setViews(int views) { this.views = views; }
 
-    public double getRating () { return rating; }
+    public double getRating() { return rating; }
 
-    public void setRating (double rating) { this.rating = rating; }
+    public void setRating(double rating) { this.rating = rating; }
 
 }
