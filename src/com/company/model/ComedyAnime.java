@@ -12,6 +12,11 @@ public class ComedyAnime extends Anime {
 
     @Override
     public String toString() {
-        return "ComedyAnime{ " + super.toString();
+        return "ComedyAnime{" + "name: " + getName()
+                + "statistics: " + getStatistics().toString()
+                + "age limit: " + getLimit().toString()
+                + "description: " + getDescription()
+                + "tag: " + getTag().toString()
+                + "}\n";
     }
 }

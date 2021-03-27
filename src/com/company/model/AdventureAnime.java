@@ -12,6 +12,11 @@ public class AdventureAnime extends Anime {
 
     @Override
     public String toString() {
-        return "AdventureAnime{ " + super.toString();
+        return "AdventureAnime{" + "name: " + getName()
+                + "statistics: " + getStatistics().toString()
+                + "age limit: " + getLimit().toString()
+                + "description: " + getDescription()
+                + "tag: " + getTag().toString()
+                + "}\n";
     }
 }

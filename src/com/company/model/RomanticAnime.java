@@ -12,6 +12,11 @@ public class RomanticAnime extends Anime {
 
     @Override
     public String toString() {
-        return "RomanticAnime{ " + super.toString();
+        return "RomanticAnime{" + "name: " + getName()
+                + "statistics: " + getStatistics().toString()
+                + "age limit: " + getLimit().toString()
+                + "description: " + getDescription()
+                + "tag: " + getTag().toString()
+                + "}\n";
     }
 }
