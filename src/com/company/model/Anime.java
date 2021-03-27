@@ -1,6 +1,7 @@
 package com.company.model;
 
-import com.company.Statistics;
+import com.company.enums.AgeLimits;
+import com.company.enums.Tag;
 
 public class Anime {
 
@@ -19,6 +20,17 @@ public class Anime {
         this.tag = tag;
     }
 
+    @Override
+    public String toString() {
+        return "Anime{" +
+                "name='" + name + '\'' +
+                ", statistics=" + statistics +
+                ", limit=" + limit +
+                ", description='" + description + '\'' +
+                ", tag=" + tag +
+                '}';
+    }
+
     public int compareToRating(final Anime animeToCompare) {
         return (int) (statistics.getRating() - animeToCompare.statistics.getRating());
     }
@@ -26,4 +38,6 @@ public class Anime {
     public int compareToViews(final Anime animeToCompare) {
         return (int) (statistics.getViews() - animeToCompare.statistics.getViews());
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.company.model;
 
-import com.company.Statistics;
+import com.company.enums.AgeLimits;
+import com.company.enums.Tag;
 
 public class AdventureAnime extends Anime {
 

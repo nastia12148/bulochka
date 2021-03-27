@@ -1,4 +1,4 @@
-package com.company;
+package com.company.model;
 
 import com.company.model.Anime;
 
@@ -18,6 +18,14 @@ public class Statistics {
         list.sort(comparator);
 
         return list;
+    }
+
+    @Override
+    public String toString() {
+        return "Statistics{" +
+                "views=" + views +
+                ", rating=" + rating +
+                '}';
     }
 
     public int getViews() { return views; }

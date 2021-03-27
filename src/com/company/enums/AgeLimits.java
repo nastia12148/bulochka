@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.enums;
 
 public enum AgeLimits {
     CODOMO,
