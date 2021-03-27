@@ -13,7 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         final List<Anime> animeList = new ArrayList<>();
-
         readFromConsole(animeList);
 
         animeList.stream()
@@ -33,27 +32,35 @@ public class Main {
                 .forEach(System.out::println);
     }
 
-    public static void readFromConsole(List<Anime> animeList) throws Exception{
+    public static void readFromConsole(final List<Anime> animeList) throws Exception {
         Scanner animeScanner = new Scanner(System.in);
+
         System.out.println("Enter the amount of anime");
         int amountOfAnime = animeScanner.nextInt();
-        String name;
+
+        String name,description;
         Statistics statistics = new Statistics();
         AgeLimits limit = AgeLimits.CODOMO;
-        String description;
         Tag tag;
-        for (int i = 0; i < amountOfAnime; i++){
+
+        for (int i = 0; i < amountOfAnime; i++) {
+
             System.out.println("Enter the name of anime");
             name = animeScanner.next();
+
             System.out.println("Enter the rating of anime");
             statistics.setRating(Double.parseDouble(animeScanner.next()));
+
             System.out.println("Enter the views of anime");
             statistics.setViews(Integer.parseInt(animeScanner.next()));
+
             System.out.println("Enter the age limit of anime (CODOMO, SUNEEN, SHOZE, SEINEN, JOSAI)");
             limit = AgeLimits.valueOf(animeScanner.next());
+
             System.out.println("Enter the description of anime");
             description = animeScanner.next();
-            System.out.println("Enter the tag of anime (HETERO, YAOI, YURI, FANTASY, GAME, HISTORY)");
+
+            System.out.println("Enter the tag of anime (FANTASY, GAME, HISTORY, HETERO, YAOI, YURI)");
             tag = Tag.valueOf(animeScanner.next());
 
             animeList.add(new Anime(name, statistics, limit, description, tag));
