@@ -2,16 +2,28 @@
 
 <anime-list>
     <anime>
-        <anime-type>adventure</anime-type>
         <name>Konosuba</name>
         <statistics>
             <rating>4.5</rating>
             <views>30000</views>
         </statistics>
-        <age-limit>codomo</age-limit>
+        <age-limit>CODOMO</age-limit>
         <description>gg</description>
-        <tag>fantasy</tag>
-        <amount-of-girlfriends>5</amount-of-girlfriends>
+        <tag>FANTASY</tag>
+        <anime-type>adventure</anime-type>
+        <amount-of-locations>5</amount-of-locations>
     </anime>
 
+    <anime>
+        <name>Konosub</name>
+        <statistics>
+            <rating>4</rating>
+            <views>40000</views>
+        </statistics>
+        <age-limit>CODOMO</age-limit>
+        <description>gg</description>
+        <tag>HETERO</tag>
+        <anime-type>romantic</anime-type>
+        <amount-of-girlfriends>2</amount-of-girlfriends>
+    </anime>
 </anime-list>

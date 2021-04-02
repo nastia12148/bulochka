@@ -3,16 +3,31 @@ package com.company;
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
 import com.company.model.*;
+import com.company.util.WorkWithCSV;
 import com.company.util.WorkWithXML;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         WorkWithXML xml = new WorkWithXML();
-        xml.read("resourses/Anime.xml");
+        List<Anime> animeList = new ArrayList<>();
+        animeList = xml.read("resourses/Anime.xml");
+        animeList.stream()
+                .map(Anime::toString)
+                .forEach(System.out::println);
+
+        WorkWithCSV csv = new WorkWithCSV();
+        List<Anime> animeList_ = new ArrayList<>();
+        animeList_ = csv.read("resourses/Anime.csv");
+        animeList_.stream()
+                .map(Anime::toString)
+                .forEach(System.out::println);
+
         /*final List<Anime> animeList = new ArrayList<>();
         readFromConsole(animeList);
 

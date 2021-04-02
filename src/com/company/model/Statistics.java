@@ -10,6 +10,14 @@ public class Statistics {
     private int views;
     private double rating;
 
+    public Statistics() {
+    }
+
+    public Statistics(int views, double rating) {
+        this.views = views;
+        this.rating = rating;
+    }
+
     public ArrayList<Anime> sort(ArrayList<Anime> list, boolean ratingOrViews) {
         final Comparator<Anime> comparator = ratingOrViews
                 ? Anime::compareToRating
