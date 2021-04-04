@@ -4,6 +4,7 @@ import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
 import com.company.model.*;
 import com.company.util.WorkWithCSV;
+import com.company.util.WorkWithJSON;
 import com.company.util.WorkWithXML;
 
 import java.io.FileNotFoundException;
@@ -25,6 +26,13 @@ public class Main {
         List<Anime> animeList_ = new ArrayList<>();
         animeList_ = csv.read("resourses/Anime.csv");
         animeList_.stream()
+                .map(Anime::toString)
+                .forEach(System.out::println);
+
+        WorkWithJSON json = new WorkWithJSON();
+        List<Anime> animeList__ = new ArrayList<>();
+        animeList = json.read("resourses/Anime.json");
+        animeList.stream()
                 .map(Anime::toString)
                 .forEach(System.out::println);
 
@@ -106,6 +114,9 @@ public class Main {
             }
         }
     }
-}
 
+    public static void bestAnime(final List<Anime> animeList){
+    
+    }
+}
 

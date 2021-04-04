@@ -1,0 +1,26 @@
+[
+  {
+    "anime": {
+      "name": "Konosuba",
+      "rating": "4.5",
+      "views": "30000",
+      "age-limit": "CODOMO",
+      "description": "gg",
+      "tag": "FANTASY",
+      "anime-type": "adventure",
+      "amount": "5"
+    }
+  },
+  {
+    "anime": {
+      "name": "Konosub",
+      "rating": "4",
+      "views": "40000",
+      "age-limit": "CODOMO",
+      "description": "gg",
+      "tag": "FANTASY",
+      "anime-type": "adventure",
+      "amount": "2"
+    }
+  }
+]

@@ -6,7 +6,6 @@ import com.company.model.AdventureAnime;
 import com.company.model.Anime;
 
 import java.io.FileNotFoundException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,24 +28,24 @@ public class WorkWithXML implements IWorkWithFile {
     @Override
     public List<Anime> read(final String filePath) throws FileNotFoundException {
         try {
-            File file = new File(filePath);
+            final File file = new File(filePath);
 
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
+            final DocumentBuilder db = dbf.newDocumentBuilder();
+            final Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
 
-            List<Anime> animeList = new ArrayList<>();
+            final List<Anime> animeList = new ArrayList<>();
 
-            NodeList nodeList = doc.getElementsByTagName("anime");
+            final NodeList nodeList = doc.getElementsByTagName("anime");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
+                final Node node = nodeList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) node;
+                    final Element eElement = (Element) node;
                     final String name = eElement.getElementsByTagName("name").item(0).getTextContent();
-                    NodeList nodeListS = doc.getElementsByTagName("statistics");
+                    final NodeList nodeListS = doc.getElementsByTagName("statistics");
                     double rating = 0;
                     int views = 0;
                     for (int j = 0; j < nodeListS.getLength(); j++) {
@@ -62,6 +61,7 @@ public class WorkWithXML implements IWorkWithFile {
                     final String description = eElement.getElementsByTagName("description").item(0).getTextContent();
                     final Tag tag = Tag.valueOf(eElement.getElementsByTagName("tag").item(0).getTextContent());
                     final String animeType = eElement.getElementsByTagName("anime-type").item(0).getTextContent();
+
                     if (animeType.equals("adventure")) {
                         final int amountOfLocations = Integer.parseInt(eElement.getElementsByTagName("amount-of-locations").item(0).getTextContent());
                         animeList.add(new AdventureAnime(name, new Statistics(views, rating), ageLimits, description, tag, amountOfLocations));
@@ -74,9 +74,11 @@ public class WorkWithXML implements IWorkWithFile {
                     }
                 }
             }
+
             return animeList;
         } catch (Exception e) {
             e.printStackTrace();
+
             return null;
         }
     }

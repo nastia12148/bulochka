@@ -20,19 +20,15 @@ public class WorkWithCSV implements IWorkWithFile {
 
     @Override
     public List<Anime> read(String filePath) throws FileNotFoundException {
-
-        List<Anime> animeList = new ArrayList<>();
+        final List<Anime> animeList = new ArrayList<>();
 
         String line;
-        try (BufferedReader br = new BufferedReader(
+        try (final BufferedReader br = new BufferedReader(
                 new FileReader(filePath))) {
-
             line = br.readLine();
-            String[] split_ = line.split(";");
 
             while ((line = br.readLine()) != null) {
 
-                // split by a comma separator
                 String[] split = line.split(";");
 
                 final String name = split[0];
@@ -42,6 +38,7 @@ public class WorkWithCSV implements IWorkWithFile {
                 final String description = split[4];
                 final Tag tag = Tag.valueOf(split[5]);
                 final String animeType = split[6];
+
                 if (animeType.equals("adventure")) {
                     final int amountOfLocations = Integer.parseInt(split[7]);
                     animeList.add(new AdventureAnime(name, new Statistics(views, rating), ageLimit, description, tag, amountOfLocations));
@@ -57,6 +54,7 @@ public class WorkWithCSV implements IWorkWithFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return animeList;
     }
 }

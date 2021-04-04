@@ -28,6 +28,10 @@ public class Statistics {
         return list;
     }
 
+    public double qualityIndexOfAnime(){
+        return rating*(double)views;
+    }
+
     @Override
     public String toString() {
         return "Statistics{" +
