@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface IWorkWithFile {
-
     List<Anime> read(final String filePath) throws FileNotFoundException;
 }
 

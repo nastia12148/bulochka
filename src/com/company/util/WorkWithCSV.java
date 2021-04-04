@@ -15,8 +15,7 @@ import java.util.List;
 
 public class WorkWithCSV implements IWorkWithFile {
 
-    public WorkWithCSV() {
-    }
+    public WorkWithCSV() { }
 
     @Override
     public List<Anime> read(String filePath) throws FileNotFoundException {

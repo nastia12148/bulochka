@@ -31,13 +31,11 @@ public class WorkWithJSON implements IWorkWithFile {
 
         try (FileReader reader = new FileReader(filePath))
         {
-            //Read JSON file
             Object obj = jsonParser.parse(reader);
 
             JSONArray employeeList = (JSONArray) obj;
             System.out.println(employeeList);
 
-            //Iterate over employee array
             employeeList.forEach( emp -> parseEmployeeObject( (JSONObject) emp, animeList ) );
 
         } catch (FileNotFoundException e) {

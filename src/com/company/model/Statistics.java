@@ -1,7 +1,5 @@
 package com.company.model;
 
-import com.company.model.Anime;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 

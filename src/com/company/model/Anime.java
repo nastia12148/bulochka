@@ -31,9 +31,7 @@ abstract public class Anime {
         return (int) (statistics.getViews() - animeToCompare.statistics.getViews());
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;

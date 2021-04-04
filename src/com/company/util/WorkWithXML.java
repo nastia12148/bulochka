@@ -22,8 +22,7 @@ import java.io.File;
 
 public class WorkWithXML implements IWorkWithFile {
 
-    public WorkWithXML() {
-    }
+    public WorkWithXML() { }
 
     @Override
     public List<Anime> read(final String filePath) throws FileNotFoundException {
