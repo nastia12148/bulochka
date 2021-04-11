@@ -21,14 +21,16 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         List<Anime> animeConsoleList = new ArrayList<>();
-        List<Anime> list = (List<Anime>) Proxy.newProxyInstance(Main.class.getClassLoader(),
-                new Class[] {List.class},
-                new LoggingProxyHandler<>(animeConsoleList));
 
-        readFromConsole(animeConsoleList);
+       readFromConsole(animeConsoleList);
 
-        WorkWithXML xml_ = new WorkWithXML();
-        xml_.write("resourses/AnimeForWrite.xml", animeConsoleList);
+       WorkWithJSON json_ = new WorkWithJSON();
+       json_.write("resourses/AnimeForWrite.json",animeConsoleList);
+
+       /* WorkWithXML xml_ =  (WorkWithXML) Proxy.newProxyInstance(Main.class.getClassLoader(),
+                new Class[] {WorkWithXML.class},
+                new LoggingProxyHandler<>(new WorkWithXML()));
+        xml_.write("resourses/AnimeForWrite.xml", animeConsoleList);*/
 
         WorkWithXML xml = new WorkWithXML();
         List<Anime> animeList = new ArrayList<>();

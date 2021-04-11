@@ -2,16 +2,16 @@ package com.company.util;
 
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
-import com.company.model.AdventureAnime;
-import com.company.model.Anime;
-import com.company.model.Statistics;
+import com.company.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.w3c.dom.Element;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -76,7 +76,41 @@ public class WorkWithJSON<T> implements IWorkWithFile<T> {
 
     @Override
     public void write(final String filepath, final List<? super Anime> animeList) throws FileNotFoundException {
+        JSONArray animeList_ = new JSONArray();
+        for(int i = 0; i<animeList.size();i++) {
+            JSONObject animeDetails = new JSONObject();
+            animeDetails.put("name", ((Anime)animeList.get(i)).getName());
+            animeDetails.put("rating", (String.valueOf(((Anime) animeList.get(i)).getStatistics().getRating())));
+            animeDetails.put("views", (String.valueOf(((Anime) animeList.get(i)).getStatistics().getViews())));
+            animeDetails.put("age-limit", (String.valueOf(((Anime) animeList.get(i)).getTag())));
+            animeDetails.put("description", ((Anime)animeList.get(i)).getDescription());
+            animeDetails.put("tag", (String.valueOf(((Anime) animeList.get(i)).getTag())));
+            animeDetails.put("anime-type", (animeList.get(i).getClass().toString()));
 
+            if ((animeList.get(i)).getClass().toString().equals("class com.company.model.AdventureAnime")) {
+                animeDetails.put("amount-of-locations",((AdventureAnime)animeList.get(i)).getAmountOfLocations());
+            } else if (animeList.get(i).getClass().toString().equals("class com.company.model.ComedyAnime")) {
+                animeDetails.put("amount-of-jokes",((ComedyAnime)animeList.get(i)).getAmountOfJokes());
+            } else if (animeList.get(i).getClass().toString().equals("class com.company.model.RomanticAnime")) {
+                animeDetails.put("amount-of-girlfriends",((RomanticAnime)animeList.get(i)).getAmountOfGirlfriends());
+            }
+
+            JSONObject anime = new JSONObject();
+            anime.put("anime",animeDetails);
+
+            animeList_.add(anime);
+        }
+
+
+        //Write JSON file
+        try (FileWriter file = new FileWriter(filepath)) {
+            //We can write any JSONArray or JSONObject instance to the file
+            file.write(animeList_.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
