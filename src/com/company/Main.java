@@ -25,15 +25,15 @@ public class Main {
 
         WorkWithXML xml = new WorkWithXML();
         List<Anime> animeList = new ArrayList<>();
-        animeList = xml.read("resourses/Anime.xml");
+        animeList = (List<Anime>) xml.read("resourses/Anime.xml");
 
         WorkWithCSV csv = new WorkWithCSV();
         List<Anime> animeList_ = new ArrayList<>();
-        animeList_ = csv.read("resourses/Anime.csv");
+        animeList_ = (List<Anime>) csv.read("resourses/Anime.csv");
 
         WorkWithJSON json = new WorkWithJSON();
         List<Anime> animeList__ = new ArrayList<>();
-        animeList = json.read("resourses/Anime.json");
+        animeList = (List<Anime>) json.read("resourses/Anime.json");
 
         animeList_.sort(Anime::compareToViews);
         System.out.println("The best by views:" + animeList_.get(animeList_.size()-1));

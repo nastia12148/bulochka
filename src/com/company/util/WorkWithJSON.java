@@ -23,7 +23,7 @@ public class WorkWithJSON implements IWorkWithFile {
     }
 
     @Override
-    public List<Anime> read(String filePath) throws FileNotFoundException {
+    public List<? super Anime> read(String filePath) throws FileNotFoundException {
         final List<Anime> animeList = new ArrayList<>();
 
         //JSON parser object to parse read file
@@ -75,7 +75,7 @@ public class WorkWithJSON implements IWorkWithFile {
     }
 
     @Override
-    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? extends Anime> animeList) throws FileNotFoundException {
 
     }
 }

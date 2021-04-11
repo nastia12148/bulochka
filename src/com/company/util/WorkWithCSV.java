@@ -18,7 +18,7 @@ public class WorkWithCSV implements IWorkWithFile {
     public WorkWithCSV() { }
 
     @Override
-    public List<Anime> read(String filePath) throws FileNotFoundException {
+    public List<? super Anime> read(final String filePath) throws FileNotFoundException {
         final List<Anime> animeList = new ArrayList<>();
 
         String line;
@@ -58,7 +58,7 @@ public class WorkWithCSV implements IWorkWithFile {
     }
 
     @Override
-    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? extends Anime> animeList) throws FileNotFoundException {
 
     }
 }

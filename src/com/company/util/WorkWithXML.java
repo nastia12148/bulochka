@@ -32,7 +32,7 @@ public class WorkWithXML implements IWorkWithFile {
     public WorkWithXML() { }
 
     @Override
-    public List<Anime> read(final String filePath) throws FileNotFoundException {
+    public List<? super Anime> read(final String filePath) throws FileNotFoundException {
         try {
             final File file = new File(filePath);
 
@@ -90,7 +90,7 @@ public class WorkWithXML implements IWorkWithFile {
     }
 
     @Override
-    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? extends Anime> animeList) throws FileNotFoundException {
         try {
 
             DocumentBuilderFactory dFact = DocumentBuilderFactory.newInstance();
