@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 
-public class WorkWithXML implements IWorkWithFile {
+public class WorkWithXML<T> implements IWorkWithFile<T> {
 
     public WorkWithXML() { }
 

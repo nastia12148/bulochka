@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkWithCSV implements IWorkWithFile {
+public class WorkWithCSV<T> implements IWorkWithFile<T> {
 
     public WorkWithCSV() { }
 

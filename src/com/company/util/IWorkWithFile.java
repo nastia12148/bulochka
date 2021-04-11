@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
-public interface IWorkWithFile {
+public interface IWorkWithFile<T> {
     List<? super Anime> read(final String filePath) throws FileNotFoundException;
 
     void write(final String filepath, final  List<? extends Anime> animeList) throws FileNotFoundException;
