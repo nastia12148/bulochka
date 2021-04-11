@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<anime-list>
+    <anime>
+        <name>fsd</name>
+        <statistics>
+            <rating>3.0</rating>
+            <views>434</views>
+        </statistics>
+        <age-limit>CODOMO</age-limit>
+        <description>sd</description>
+        <tag>GAME</tag>
+        <anime-type>class com.company.model.RomanticAnime</anime-type>
+        <amount-of-girlfriends>3</amount-of-girlfriends>
+    </anime>
+</anime-list>

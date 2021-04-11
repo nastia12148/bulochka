@@ -24,11 +24,31 @@ abstract public class Anime {
     abstract public String toString();
 
     public int compareToRating(final Anime animeToCompare) {
-        return (int) (statistics.getRating() - animeToCompare.statistics.getRating());
+        double a = statistics.getRating() - animeToCompare.statistics.getRating();
+        if(a==0){
+            return 0;
+        }
+        if (a>0){
+            return 1;
+        }else {
+            return -1;
+        }
     }
 
     public int compareToViews(final Anime animeToCompare) {
         return (int) (statistics.getViews() - animeToCompare.statistics.getViews());
+    }
+
+    public int compareToQuality(final Anime animeToCompare){
+        double a = statistics.qualityIndexOfAnime() - animeToCompare.statistics.qualityIndexOfAnime();
+        if(a==0){
+            return 0;
+        }
+        if (a>0){
+            return 1;
+        }else {
+            return -1;
+        }
     }
 
     public String getName() { return name; }

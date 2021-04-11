@@ -3,6 +3,7 @@ package com.company;
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
 import com.company.model.*;
+import com.company.util.IWorkWithFile;
 import com.company.util.WorkWithCSV;
 import com.company.util.WorkWithJSON;
 import com.company.util.WorkWithXML;
@@ -15,45 +16,37 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+
+        List<Anime> animeConsoleList = new ArrayList<>();
+        readFromConsole(animeConsoleList);
+
+        WorkWithXML xml_ = new WorkWithXML();
+        xml_.write("resourses/AnimeForWrite.xml", animeConsoleList);
+
         WorkWithXML xml = new WorkWithXML();
         List<Anime> animeList = new ArrayList<>();
         animeList = xml.read("resourses/Anime.xml");
-        animeList.stream()
-                .map(Anime::toString)
-                .forEach(System.out::println);
 
         WorkWithCSV csv = new WorkWithCSV();
         List<Anime> animeList_ = new ArrayList<>();
         animeList_ = csv.read("resourses/Anime.csv");
-        animeList_.stream()
-                .map(Anime::toString)
-                .forEach(System.out::println);
 
         WorkWithJSON json = new WorkWithJSON();
         List<Anime> animeList__ = new ArrayList<>();
         animeList = json.read("resourses/Anime.json");
-        animeList.stream()
-                .map(Anime::toString)
-                .forEach(System.out::println);
 
-        /*final List<Anime> animeList = new ArrayList<>();
-        readFromConsole(animeList);
+        animeList_.sort(Anime::compareToViews);
+        System.out.println("The best by views:" + animeList_.get(animeList_.size()-1));
 
-        animeList.stream()
-                .map(Anime::toString)
-                .forEach(System.out::println);
 
-        System.out.println("Sorted by rating: \n");
-        animeList.stream()
-                .sorted(Anime::compareToRating)
-                .map(Anime::toString)
-                .forEach(System.out::println);
+        animeList_.sort(Anime::compareToRating);
 
-        System.out.println("Sorted by views: \n");
-        animeList.stream()
-                .sorted(Anime::compareToViews)
-                .map(Anime::toString)
-                .forEach(System.out::println);*/
+        System.out.println("The best by rating:" + animeList_.get(animeList_.size()-1));
+
+        animeList_.sort(Anime::compareToQuality);
+
+        System.out.println("The best by quality:" + animeList_.get(animeList_.size()-1));
+
     }
 
     public static void readFromConsole(final List<Anime> animeList) {

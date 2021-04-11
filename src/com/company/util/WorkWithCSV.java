@@ -56,4 +56,9 @@ public class WorkWithCSV implements IWorkWithFile {
 
         return animeList;
     }
+
+    @Override
+    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+
+    }
 }

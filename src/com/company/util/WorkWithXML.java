@@ -2,17 +2,24 @@ package com.company.util;
 
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
-import com.company.model.AdventureAnime;
-import com.company.model.Anime;
+import com.company.model.*;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
-import com.company.model.Statistics;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -79,6 +86,106 @@ public class WorkWithXML implements IWorkWithFile {
             e.printStackTrace();
 
             return null;
+        }
+    }
+
+    @Override
+    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+        try {
+
+            DocumentBuilderFactory dFact = DocumentBuilderFactory.newInstance();
+            DocumentBuilder build = dFact.newDocumentBuilder();
+            Document doc = build.newDocument();
+
+            Element root = doc.createElement("anime-list");
+            doc.appendChild(root);
+
+            for(int i=0; i<animeList.size(); i ++ ) {
+                Element anime = doc.createElement("anime");
+                root.appendChild(anime);
+
+                Element name = doc.createElement("name");
+                name.appendChild(doc.createTextNode(animeList.get(i).getName()));
+                anime.appendChild(name);
+
+                Element statistics = doc.createElement("statistics");
+                anime.appendChild(statistics);
+
+                Element rating = doc.createElement("rating");
+                rating.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getStatistics().getRating())));
+                statistics.appendChild(rating);
+
+                Element views = doc.createElement("views");
+                views.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getStatistics().getViews())));
+                statistics.appendChild(views);
+
+                Element ageLimit = doc.createElement("age-limit");
+                ageLimit.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getLimit())));
+                anime.appendChild(ageLimit);
+
+                Element description = doc.createElement("description");
+                description.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getDescription())));
+                anime.appendChild(description);
+
+                Element tag = doc.createElement("tag");
+                tag.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getTag())));
+                anime.appendChild(tag);
+
+                Element animeType = doc.createElement("anime-type");
+                animeType.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getClass())));
+                anime.appendChild(animeType);
+
+                if (animeType.getTextContent().equals("class com.company.model.AdventureAnime")) {
+                    final Element amountOfLocations = doc.createElement("amount-of-locations");
+                    AdventureAnime adventureAnime = (AdventureAnime)animeList.get(i);
+                    amountOfLocations.appendChild(doc.createTextNode(String.valueOf(adventureAnime.getAmountOfLocations())));
+                    anime.appendChild(amountOfLocations);
+                } else if (animeType.getTextContent().equals("class com.company.model.ComedyAnime")) {
+                    final Element amountOfJokes = doc.createElement("amount-of-jokes");
+                    ComedyAnime comedyAnime = (ComedyAnime) animeList.get(i);
+                    amountOfJokes.appendChild(doc.createTextNode(String.valueOf(comedyAnime.getAmountOfJokes())));
+                    anime.appendChild(amountOfJokes);
+                } else if (animeType.getTextContent().equals("class com.company.model.RomanticAnime")) {
+                    final Element amountOfGirlfriends = doc.createElement("amount-of-girlfriends");
+                    RomanticAnime romanticAnime = (RomanticAnime) animeList.get(i);
+                    amountOfGirlfriends.appendChild(doc.createTextNode(String.valueOf(romanticAnime.getAmountOfGirlfriends())));
+                    anime.appendChild(amountOfGirlfriends);
+                }
+
+            }
+
+
+            // Save the document to the disk file
+            TransformerFactory tranFactory = TransformerFactory.newInstance();
+            Transformer aTransformer = tranFactory.newTransformer();
+
+            // format the XML nicely
+            aTransformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
+
+            aTransformer.setOutputProperty(
+                    "{http://xml.apache.org/xslt}indent-amount", "4");
+            aTransformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+
+
+            DOMSource source = new DOMSource(doc);
+            try {
+                FileWriter fos = new FileWriter(filepath);
+                StreamResult result = new StreamResult(fos);
+                aTransformer.transform(source, result);
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+
+
+        } catch (TransformerException ex) {
+            System.out.println("Error outputting document");
+
+        } catch (ParserConfigurationException ex) {
+            System.out.println("Error building document");
         }
     }
 }

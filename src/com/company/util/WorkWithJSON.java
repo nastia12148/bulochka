@@ -73,6 +73,11 @@ public class WorkWithJSON implements IWorkWithFile {
             animeList_.add(new AdventureAnime(name, new Statistics(views, rating), ageLimit, description, tag, amountOfGirlfriends));
         }
     }
+
+    @Override
+    public void write(final String filepath, final List<Anime> animeList) throws FileNotFoundException {
+
+    }
 }
 
 
