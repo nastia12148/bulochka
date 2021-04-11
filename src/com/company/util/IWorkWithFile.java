@@ -9,6 +9,6 @@ import java.util.Scanner;
 public interface IWorkWithFile<T> {
     List<? super Anime> read(final String filePath) throws FileNotFoundException;
 
-    void write(final String filepath, final  List<? extends Anime> animeList) throws FileNotFoundException;
+    void write(final String filepath, final  List<? super Anime> animeList) throws FileNotFoundException;
 }
 

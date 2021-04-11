@@ -90,7 +90,7 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
     }
 
     @Override
-    public void write(final String filepath, final List<? extends Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? super Anime> animeList) throws FileNotFoundException {
         try {
 
             DocumentBuilderFactory dFact = DocumentBuilderFactory.newInstance();
@@ -105,30 +105,30 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
                 root.appendChild(anime);
 
                 Element name = doc.createElement("name");
-                name.appendChild(doc.createTextNode(animeList.get(i).getName()));
+                name.appendChild(doc.createTextNode(((Anime)animeList.get(i)).getName()));
                 anime.appendChild(name);
 
                 Element statistics = doc.createElement("statistics");
                 anime.appendChild(statistics);
 
                 Element rating = doc.createElement("rating");
-                rating.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getStatistics().getRating())));
+                rating.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getStatistics().getRating())));
                 statistics.appendChild(rating);
 
                 Element views = doc.createElement("views");
-                views.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getStatistics().getViews())));
+                views.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getStatistics().getViews())));
                 statistics.appendChild(views);
 
                 Element ageLimit = doc.createElement("age-limit");
-                ageLimit.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getLimit())));
+                ageLimit.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getLimit())));
                 anime.appendChild(ageLimit);
 
                 Element description = doc.createElement("description");
-                description.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getDescription())));
+                description.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getDescription())));
                 anime.appendChild(description);
 
                 Element tag = doc.createElement("tag");
-                tag.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getTag())));
+                tag.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getTag())));
                 anime.appendChild(tag);
 
                 Element animeType = doc.createElement("anime-type");

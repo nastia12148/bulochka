@@ -58,7 +58,7 @@ public class WorkWithCSV<T> implements IWorkWithFile<T> {
     }
 
     @Override
-    public void write(final String filepath, final List<? extends Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? super Anime> animeList) throws FileNotFoundException {
 
     }
 }

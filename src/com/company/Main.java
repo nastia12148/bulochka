@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
+import com.company.log.LoggingProxyHandler;
 import com.company.model.*;
 import com.company.util.IWorkWithFile;
 import com.company.util.WorkWithCSV;
@@ -9,7 +10,9 @@ import com.company.util.WorkWithJSON;
 import com.company.util.WorkWithXML;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +21,10 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         List<Anime> animeConsoleList = new ArrayList<>();
+        List<Anime> list = (List<Anime>) Proxy.newProxyInstance(Main.class.getClassLoader(),
+                new Class[] {List.class},
+                new LoggingProxyHandler<>(animeConsoleList));
+
         readFromConsole(animeConsoleList);
 
         WorkWithXML xml_ = new WorkWithXML();
