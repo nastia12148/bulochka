@@ -44,7 +44,6 @@ public class WorkWithCSV<T> implements IWorkWithFile<T> {
                     animeList.add(new AdventureAnime(name, new Statistics(views, rating), ageLimit, description, tag, amountOfGirlfriends));
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

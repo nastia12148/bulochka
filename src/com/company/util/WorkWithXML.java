@@ -183,7 +183,6 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
 
         } catch (TransformerException ex) {
             System.out.println("Error outputting document");
-
         } catch (ParserConfigurationException ex) {
             System.out.println("Error building document");
         }

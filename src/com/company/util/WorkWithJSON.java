@@ -113,7 +113,6 @@ public class WorkWithJSON<T> implements IWorkWithFile<T> {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(animeList_.toJSONString());
             //file.flush();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
