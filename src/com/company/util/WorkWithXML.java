@@ -101,37 +101,37 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
             doc.appendChild(root);
 
             for(int i=0; i<animeList.size(); i ++ ) {
-                Element anime = doc.createElement("anime");
+                final Element anime = doc.createElement("anime");
                 root.appendChild(anime);
 
-                Element name = doc.createElement("name");
+                final Element name = doc.createElement("name");
                 name.appendChild(doc.createTextNode(((Anime)animeList.get(i)).getName()));
                 anime.appendChild(name);
 
-                Element statistics = doc.createElement("statistics");
+                final Element statistics = doc.createElement("statistics");
                 anime.appendChild(statistics);
 
-                Element rating = doc.createElement("rating");
+                final Element rating = doc.createElement("rating");
                 rating.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getStatistics().getRating())));
                 statistics.appendChild(rating);
 
-                Element views = doc.createElement("views");
+                final Element views = doc.createElement("views");
                 views.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getStatistics().getViews())));
                 statistics.appendChild(views);
 
-                Element ageLimit = doc.createElement("age-limit");
+                final Element ageLimit = doc.createElement("age-limit");
                 ageLimit.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getLimit())));
                 anime.appendChild(ageLimit);
 
-                Element description = doc.createElement("description");
+                final Element description = doc.createElement("description");
                 description.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getDescription())));
                 anime.appendChild(description);
 
-                Element tag = doc.createElement("tag");
+                final Element tag = doc.createElement("tag");
                 tag.appendChild(doc.createTextNode(String.valueOf(((Anime)animeList.get(i)).getTag())));
                 anime.appendChild(tag);
 
-                Element animeType = doc.createElement("anime-type");
+                final Element animeType = doc.createElement("anime-type");
                 animeType.appendChild(doc.createTextNode(String.valueOf(animeList.get(i).getClass())));
                 anime.appendChild(animeType);
 
@@ -156,8 +156,8 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
 
 
             // Save the document to the disk file
-            TransformerFactory tranFactory = TransformerFactory.newInstance();
-            Transformer aTransformer = tranFactory.newTransformer();
+            final TransformerFactory tranFactory = TransformerFactory.newInstance();
+            final Transformer aTransformer = tranFactory.newTransformer();
 
             // format the XML nicely
             aTransformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
@@ -170,8 +170,8 @@ public class WorkWithXML<T> implements IWorkWithFile<T> {
 
             DOMSource source = new DOMSource(doc);
             try {
-                FileWriter fos = new FileWriter(filepath);
-                StreamResult result = new StreamResult(fos);
+                final FileWriter fos = new FileWriter(filepath);
+                final StreamResult result = new StreamResult(fos);
                 aTransformer.transform(source, result);
 
             } catch (IOException e) {
