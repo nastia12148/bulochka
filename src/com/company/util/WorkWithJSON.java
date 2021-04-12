@@ -82,17 +82,23 @@ public class WorkWithJSON<T> implements IWorkWithFile<T> {
             animeDetails.put("name", ((Anime)animeList.get(i)).getName());
             animeDetails.put("rating", (String.valueOf(((Anime) animeList.get(i)).getStatistics().getRating())));
             animeDetails.put("views", (String.valueOf(((Anime) animeList.get(i)).getStatistics().getViews())));
-            animeDetails.put("age-limit", (String.valueOf(((Anime) animeList.get(i)).getTag())));
+            animeDetails.put("age-limit", (String.valueOf(((Anime) animeList.get(i)).getLimit())));
             animeDetails.put("description", ((Anime)animeList.get(i)).getDescription());
             animeDetails.put("tag", (String.valueOf(((Anime) animeList.get(i)).getTag())));
-            animeDetails.put("anime-type", (animeList.get(i).getClass().toString()));
+            //animeDetails.put("anime-type", (animeList.get(i).getClass().toString()));
 
             if ((animeList.get(i)).getClass().toString().equals("class com.company.model.AdventureAnime")) {
-                animeDetails.put("amount-of-locations",((AdventureAnime)animeList.get(i)).getAmountOfLocations());
+                animeDetails.put("anime-type","adventure");
+                int amount = ((AdventureAnime)animeList.get(i)).getAmountOfLocations();
+                animeDetails.put("amount",String.valueOf(amount));
             } else if (animeList.get(i).getClass().toString().equals("class com.company.model.ComedyAnime")) {
-                animeDetails.put("amount-of-jokes",((ComedyAnime)animeList.get(i)).getAmountOfJokes());
+                animeDetails.put("anime-type","comedy");
+                int amount = ((ComedyAnime)animeList.get(i)).getAmountOfJokes();
+                animeDetails.put("amount", String.valueOf(amount));
             } else if (animeList.get(i).getClass().toString().equals("class com.company.model.RomanticAnime")) {
-                animeDetails.put("amount-of-girlfriends",((RomanticAnime)animeList.get(i)).getAmountOfGirlfriends());
+                animeDetails.put("anime-type","romantic");
+                int amount = ((RomanticAnime)animeList.get(i)).getAmountOfGirlfriends();
+                animeDetails.put("amount",String.valueOf(amount));
             }
 
             JSONObject anime = new JSONObject();
@@ -106,7 +112,7 @@ public class WorkWithJSON<T> implements IWorkWithFile<T> {
         try (FileWriter file = new FileWriter(filepath)) {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(animeList_.toJSONString());
-            file.flush();
+            //file.flush();
 
         } catch (IOException e) {
             e.printStackTrace();

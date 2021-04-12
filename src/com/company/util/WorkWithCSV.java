@@ -2,14 +2,9 @@ package com.company.util;
 
 import com.company.enums.AgeLimits;
 import com.company.enums.Tag;
-import com.company.model.AdventureAnime;
-import com.company.model.Anime;
-import com.company.model.Statistics;
+import com.company.model.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +53,34 @@ public class WorkWithCSV<T> implements IWorkWithFile<T> {
     }
 
     @Override
-    public void write(final String filepath, final List<? super Anime> animeList) throws FileNotFoundException {
+    public void write(final String filepath, final List<? super Anime> animeList) throws IOException {
+        FileWriter csvWriter = new FileWriter(filepath);
+        csvWriter.append("name;rating;views;age-limit;description;tag;anime-type;amount");
+        csvWriter.append("\n");
 
+        for (int i = 0; i<animeList.size(); i++) {
+            String rowData = ((Anime)animeList.get(i)).getName()+";"
+                    +String.valueOf(((Anime)animeList.get(i)).getStatistics().getRating()+ ";"
+                    +String.valueOf((((Anime) animeList.get(i)).getStatistics().getViews()))) + ";"
+                    +String.valueOf(((Anime)animeList.get(i)).getLimit())+ ";"
+                    +((Anime)animeList.get(i)).getDescription() + ";"
+                    +((Anime)animeList.get(i)).getTag() + ";";
+            if ((animeList.get(i)).getClass().toString().equals("class com.company.model.AdventureAnime")) {
+                rowData += "adventure;";
+                rowData += ((AdventureAnime)animeList.get(i)).getAmountOfLocations();
+            } else if (animeList.get(i).getClass().toString().equals("class com.company.model.ComedyAnime")) {
+                rowData+="comedy;";
+                rowData += ((ComedyAnime)animeList.get(i)).getAmountOfJokes();
+            } else if (animeList.get(i).getClass().toString().equals("class com.company.model.RomanticAnime")) {
+                rowData+= "romantic;";
+                rowData+= ((RomanticAnime)animeList.get(i)).getAmountOfGirlfriends();
+            }
+
+            csvWriter.append(rowData);
+            csvWriter.append("\n");
+        }
+
+        csvWriter.flush();
+        csvWriter.close();
     }
 }

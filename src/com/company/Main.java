@@ -10,6 +10,7 @@ import com.company.util.WorkWithJSON;
 import com.company.util.WorkWithXML;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
         List<Anime> animeConsoleList = new ArrayList<>();
 
@@ -26,6 +27,9 @@ public class Main {
 
        WorkWithJSON json_ = new WorkWithJSON();
        json_.write("resourses/AnimeForWrite.json",animeConsoleList);
+
+       WorkWithCSV csv_ = new WorkWithCSV();
+       csv_.write("resourses/AnimeForWrite.csv",animeConsoleList);
 
        /* WorkWithXML xml_ =  (WorkWithXML) Proxy.newProxyInstance(Main.class.getClassLoader(),
                 new Class[] {WorkWithXML.class},
